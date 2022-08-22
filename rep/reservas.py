@@ -44,7 +44,9 @@ class Reservas:
         return self.__status
     
     def valor_tipo_quarto(self):
-        return self.TipoQuarto[self.__tipo_quarto].value['Valor']
+        if self.__tipo_quarto.upper() == 'S': return 100
+        elif self.__tipo_quarto.upper() == 'D': return 200
+        elif self.__tipo_quarto.upper() == 'P': return 300
 
     def set_reservado(self):
         self.__status = 'R'
@@ -57,11 +59,6 @@ class Reservas:
         
     def set_finalizado(self):
         self.__status = 'F'
-    
-    class TipoQuarto(Enum):
-        Standard = {'Id': 'S', 'Valor': 100}
-        Deluxe = {'Id': 'D', 'Valor': 200}
-        Premium = {'Id': 'P', 'Valor': 300}
 
     class Status(Enum):
         Reservado = 'R'

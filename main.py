@@ -1,5 +1,6 @@
 from view.menus import Menus
 
+
 class Main:
     def __init__(self):
         self.__executando = True
@@ -14,9 +15,9 @@ class Main:
 
     def main(self):
         while self.executando:
-            Menus.menu_inicial()
+            Menus.menu_inicial(self)
 
 
 
 if __name__ == "__main__":
-    Main.main()
+    Main().main()
