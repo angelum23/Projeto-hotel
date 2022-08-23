@@ -1,4 +1,5 @@
 from controller.cadastroReserva import CadastroReserva
+from rep.banco import Banco
 
 class Menus:
     def menu_inicial(main):
@@ -7,8 +8,9 @@ class Menus:
             2 - Entrada do cliente (Check in).
             3 - Saída do cliente (Check out).
             4 - Alterar reserva.
-            5 - Relatórios. 
-            6 - Sair 
+            5 - Relatórios.
+            6 - Menu banco. 
+            7 - Sair.
             """)
         opc = input('Qual opção você deseja selecionar? \n')
 
@@ -17,4 +19,19 @@ class Menus:
         elif opc == '3': pass
         elif opc == '4': pass
         elif opc == '5': pass
-        elif opc == '6': main.fim_execucao()
+        elif opc == '6': Menus.menu_banco
+        elif opc == '7': main.fim_execucao()
+
+    def menu_banco():
+        print(""" 
+            1 - Criar tabela reservas
+            2 - Selecionar todos os registros
+            3 - Limpar tabela reservas
+            4 - Dropar tabela reservas
+         """)
+        opc = input('Qual opção você deseja selecionar? \n')
+
+        if opc == '1': Banco.cria_tabela_reservas()
+        elif opc == '2': pass
+        elif opc == '3': pass
+        elif opc == '4': pass
