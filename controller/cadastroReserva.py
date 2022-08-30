@@ -11,4 +11,4 @@ class CadastroReserva:
 
         reserva = Reservas(None, nome, cpf, qtd_pessoas, tipo_quarto, qtd_dias)
 
-        Banco.insere_registro(reserva)
+        Banco().insere_registro(reserva)

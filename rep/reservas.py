@@ -11,6 +11,14 @@ class Reservas:
         self.__valor = self.valor_tipo_quarto() * qtd_dias * qtd_pessoas
         self.__status = 'R'
 
+    
+    def retorna_lista_reservas(self, lista):
+        listaReservas = list()
+        for item in lista:
+            reserva = Reservas(item[0], item[2], item[1], item[3], item[4], item[5])
+            listaReservas.append(reserva)
+        return listaReservas
+
     @property
     def idreserva(self):
         return self.__idreserva

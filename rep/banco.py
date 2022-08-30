@@ -26,11 +26,22 @@ class Banco:
                     numerodias integer not null,
                     valor numeric not null,
                     status text default 'R')""")
+        self.conexao.commit()
+
+    def seleciona_todos_registros(self):
+        self.cursor.execute("SELECT * FROM RESERVAS")
+        print(self.cursor.fetchall())
 
     def insere_registro(self, reserva):
         insert = "INSERT INTO reservas values(null, {0}, '{1}', {2}, '{3}', {4}, '{5}', '{6}')"
         self.cursor.execute(insert.format(reserva.cpf, reserva.nome, reserva.qtd_pessoas, reserva.tipo_quarto, reserva.qtd_dias, reserva.valor, reserva.status))
+        self.conexao.commit()
 
     def altera_registro(self, reserva):
         update = "UPDATE reservas set numeropessoas = {0}, tipoquarto = '{1}', numerodias = {2}, status = '{3}', valor = {4} where idreserva = {5}"
         self.cursor.execute(update.format(reserva.qtd_pessoas, reserva.tipo_quarto, reserva.qtd_dias, reserva.status, reserva.valor, reserva.idreserva))
+        self.conexao.commit()
+
+    def recuperar_por_cpf(self, cpf):
+        self.cursor.execute(f"SELECT * FROM RESERVAS WHERE cpf = {cpf}")
+        return self.cursor.fetchall()
