@@ -1,3 +1,4 @@
+from os import stat
 import sqlite3
 
 class Banco:
@@ -45,3 +46,15 @@ class Banco:
     def recuperar_por_cpf(self, cpf):
         self.cursor.execute(f"SELECT * FROM RESERVAS WHERE cpf = {cpf}")
         return self.cursor.fetchall()
+        
+    def recuperar_por_cpf_status(self, cpf, status):
+        self.cursor.execute(f"SELECT * FROM RESERVAS WHERE cpf = {cpf} and status = '{status}'")
+        return self.cursor.fetchall()
+
+    def checkin(self, id):
+        self.cursor.execute(f"UPDATE RESERVAS SET STATUS = 'A' WHERE idreserva = {id}")
+        self.conexao.commit()
+
+    def checkout(self, id):
+        self.cursor.execute(f"UPDATE RESERVAS SET STATUS = 'F' WHERE idreserva = {id}")
+        self.conexao.commit()

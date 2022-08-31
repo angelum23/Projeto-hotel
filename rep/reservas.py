@@ -12,12 +12,19 @@ class Reservas:
         self.__status = 'R'
 
     
-    def retorna_lista_reservas(self, lista):
+    def retorna_lista_reservas(lista):
         listaReservas = list()
         for item in lista:
             reserva = Reservas(item[0], item[2], item[1], item[3], item[4], item[5])
             listaReservas.append(reserva)
         return listaReservas
+
+    def retorna_item_por_id(lista, codigo):
+        for item in lista:
+            if item.id == codigo:
+                return item
+        
+        print('Registro não encontrado')
 
     @property
     def idreserva(self):

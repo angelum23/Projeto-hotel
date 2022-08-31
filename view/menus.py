@@ -1,4 +1,6 @@
 from controller.cadastroReserva import CadastroReserva
+from controller.entradaCliente import EntradaCliente
+from controller.saidaCliente import SaidaCliente
 from rep.banco import Banco
 from controller import base
 class Menus:
@@ -19,8 +21,8 @@ class Menus:
             """)
         opc = input('Qual opção você deseja selecionar? \n')
         if opc == '1': CadastroReserva.cadastro_reserva()
-        elif opc == '2': pass
-        elif opc == '3': pass
+        elif opc == '2': EntradaCliente.checkin()
+        elif opc == '3': SaidaCliente.checkout()
         elif opc == '4': pass
         elif opc == '5': pass
         elif opc == '6': Menus.menu_banco()
