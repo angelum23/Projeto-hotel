@@ -1,3 +1,4 @@
+from controller.alteraReserva import AlteraReserva
 from controller.cadastroReserva import CadastroReserva
 from controller.entradaCliente import EntradaCliente
 from controller.saidaCliente import SaidaCliente
@@ -23,7 +24,7 @@ class Menus:
         if opc == '1': CadastroReserva.cadastro_reserva()
         elif opc == '2': EntradaCliente.checkin()
         elif opc == '3': SaidaCliente.checkout()
-        elif opc == '4': pass
+        elif opc == '4': AlteraReserva.escolher_reserva()
         elif opc == '5': pass
         elif opc == '6': Menus.menu_banco()
         elif opc == '7': main.fim_execucao()

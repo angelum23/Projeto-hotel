@@ -19,7 +19,7 @@ class SaidaCliente:
         if len(reservas) < 1: return print('Nenhum registro encontrado')
 
         if len(reservas)  > 1:
-            reserva = SaidaCliente.escolhe_registro(reservas)
+            reserva = Reservas.escolhe_registro(reservas)
             Banco().checkin(reserva.idreserva)
 
         if len(reservas) == 1:
