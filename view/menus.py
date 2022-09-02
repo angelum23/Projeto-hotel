@@ -25,7 +25,7 @@ class Menus:
         elif opc == '2': EntradaCliente.checkin()
         elif opc == '3': SaidaCliente.checkout()
         elif opc == '4': AlteraReserva.escolher_reserva()
-        elif opc == '5': pass
+        elif opc == '5': Menus.menu_relatorios()
         elif opc == '6': Menus.menu_banco()
         elif opc == '7': main.fim_execucao()
 
@@ -44,4 +44,22 @@ class Menus:
         elif opc == '3': pass
         elif opc == '4': pass
         base.pause_enter()
+
+    def menu_relatorios():
+        base.cls()
+        print(""" 
+1 - Relatório de todas as reservas com status R. 
+2 - Relatório de todas as reservas com status C. 
+3 - Relatório de todas as reservas com status A. 
+4 - Relatório de todas as reservas com status F. 
+5 - Relatório total recebido (somar valor de todas as reservas finalizadas) 
+6 – Relatório de Reserva por pessoa (Pesquisa por CPF)
+        """)
+        opc = input('Qual opção você deseja selecionar? \n')
+        if opc == '1': Banco().rel_status('R')
+        elif opc == '2': Banco().rel_status('C')
+        elif opc == '3': Banco().rel_status('A')
+        elif opc == '4': Banco().rel_status('F')
+        elif opc == '5': pass
+        elif opc == '6': pass
         

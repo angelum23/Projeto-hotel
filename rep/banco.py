@@ -67,3 +67,9 @@ class Banco:
     def checkout(self, id):
         self.cursor.execute(f"UPDATE RESERVAS SET STATUS = 'F' WHERE idreserva = {id}")
         self.conexao.commit()
+
+    def rel_status(self, status):
+        self.cursor.execute(f"SELECT * FROM RESERVAS WHERE STATUS = '{status}'")
+        print(self.cursor.fetchall())
+
+    
