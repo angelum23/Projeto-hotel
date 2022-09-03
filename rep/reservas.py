@@ -15,12 +15,16 @@ class Reservas:
     def calcula_valor(self):
         self.__valor = self.valor_tipo_quarto() * self.qtd_dias * self.qtd_pessoas
 
+
     def retorna_lista_reservas(lista):
         listaReservas = list()
         for item in lista:
             reserva = Reservas(item[0], item[2], item[1], item[3], item[4], item[5])
             listaReservas.append(reserva)
         return listaReservas
+
+    def retorna_reserva(item):
+        return Reservas(item[0], item[2], item[1], item[3], item[4], item[5])
 
 
     def retorna_item_por_id(lista, codigo):
@@ -37,6 +41,19 @@ class Reservas:
         
         codigo = input('Digite o código da reserva escolhida: ')
         return Reservas.retorna_item_por_id(registros, codigo)
+
+    
+    def mensagem_format(self):
+        return """ 
+► Reserva {0} ◄
+Nome: {1}
+Cpf: {2}
+Numero de pessoas: {3}
+Tipo do quarto: {4}
+Dias reservados: {5}
+Valor: {6}
+Status: {7}
+        """.format(self.idreserva, self.nome, self.cpf, self.qtd_pessoas, self.tipo_quarto_ext, self.qtd_dias, self.valor, self.status_ext)
 
 
     @property
@@ -96,6 +113,19 @@ class Reservas:
         elif self.__tipo_quarto.upper() == 'D': return 200
         elif self.__tipo_quarto.upper() == 'P': return 300
 
+    @property        
+    def tipo_quarto_ext(self):
+        if self.__tipo_quarto.upper() == 'S': return 'Standard'
+        elif self.__tipo_quarto.upper() == 'D': return 'Deluxe'
+        elif self.__tipo_quarto.upper() == 'P': return 'Premium'
+
+    @property
+    def status_ext(self):
+        if self.__status.upper() == 'R': return 'Reservado'
+        elif self.__status.upper() == 'C': return 'Cancelado'
+        elif self.__status.upper() == 'A': return 'Ativo'
+        elif self.__status.upper() == 'F': return 'Finalizado'
+
 
     def set_reservado(self):
         self.__status = 'R'
@@ -111,10 +141,3 @@ class Reservas:
 
     def set_finalizado(self):
         self.__status = 'F'
-
-
-    class Status(Enum):
-        Reservado = 'R'
-        Cancelado = 'C'
-        Ativo = 'A'
-        Finalizado = 'F'

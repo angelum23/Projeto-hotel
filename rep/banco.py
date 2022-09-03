@@ -27,14 +27,27 @@ class Banco:
                     numeropessoas integer not null,
                     tipoquarto text not null,
                     numerodias integer not null,
-                    valor numeric not null,
+                    valor real not null,
                     status text default 'R')""")
+        self.conexao.commit()
+
+    def deleta_todos_registros(self):
+        if(input("Digite 'S' para confirmar: ").upper() != 'S'): return
+        self.cursor.execute("DELETE FROM RESERVAS WHERE 1 = 1")
+        self.conexao.commit()
+
+
+    def drop_reservas(self):
+        if(input("Digite 'S' para confirmar: ").upper() != 'S'): return
+        self.cursor.execute("DROP TABLE RESERVAS")
         self.conexao.commit()
 
 
     def seleciona_todos_registros(self):
         self.cursor.execute("SELECT * FROM RESERVAS")
-        print(self.cursor.fetchall())
+        registros = self.cursor.fetchall()
+        for registro in registros:
+            print(registro)
 
 
     def insere_registro(self, reserva):
@@ -68,8 +81,12 @@ class Banco:
         self.cursor.execute(f"UPDATE RESERVAS SET STATUS = 'F' WHERE idreserva = {id}")
         self.conexao.commit()
 
-    def rel_status(self, status):
-        self.cursor.execute(f"SELECT * FROM RESERVAS WHERE STATUS = '{status}'")
-        print(self.cursor.fetchall())
 
-    
+    def recuperar_por_status(self, status):
+        self.cursor.execute(f"SELECT * FROM RESERVAS WHERE STATUS = '{status}'")
+        return self.cursor.fetchall()
+
+
+    def rel_caixa(self):
+        self.cursor.execute("SELECT SUM(VALOR) FROM RESERVAS")
+        print(f"O saldo em caixa é de {self.cursor.fetchone()[0]}")
